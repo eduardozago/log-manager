@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-slate-200 min-h-screen flex flex-col">
+        <nav class="py-6 px-4 md:px-20 flex items-center justify-between bg-slate-800">
+            <h1 class="text-lg md:text-xl text-slate-300"><a href="{% url 'core:index' %}">Log Manager</a></h1>
+            <div class="space-x-2 md:space-x-4 flex flex-col md:flex-row items-center">
+                <a href="{% url 'core:about' %}" class="text-slate-300 py-2 md:py-0">Sobre</a>
+
+                {% if request.user.is_authenticated %}
+                    <p class="text-slate-300">Olá, {{ user.name }}</p>
+                    <a href="{% url 'account:logout' %}" class="text-slate-300 py-2 md:py-0">Sair</a>
+                    <a href="{% url 'branch:branchs' %}" class="py-2 px-4 md:py-4 md:px-8 bg-slate-200 text-slate-800">Filiais</a>
+                    <a href="{% url 'vehicle:vehicles' %}" class="py-2 px-4 md:py-4 md:px-8 bg-slate-600 text-slate-300">Veículos</a>
+                    <a href="{% url 'trip:trips' %}" class="py-2 px-4 md:py-4 md:px-8 bg-slate-400 text-slate-800">Viagens</a>                    
+                {% else %}
+                    <a href="{% url 'account:login' %}" class="py-2 px-4 md:py-4 md:px-8 bg-slate-400 text-slate-800">Login</a>
+                    <a href="{% url 'account:signup' %}" class="py-2 px-4 md:py-4 md:px-8 bg-slate-600 text-slate-300">Cadastre-se</a>
+                {% endif %}
+            </div>
+        </nav>
+
+        <main class="py-6 px-8 md:px-20 flex-grow">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer class="py-8 px-4 md:px-8 bg-slate-950 text-center">
+            <p class="text-slate-300">© 2024 Eduardo Zago - All rights reserved.</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="max-w-xl mx-auto py-8 bg-slate-400 text-center">
+    <h1 class="text-2xl text-slate-800">Editar Viagem</h1>
+
+    <form class="mt-6 px-8 space-y-4" method="post" action=".">
+        {% csrf_token %}
+        <div>
+            <label for="vehicle" class="text-slate-800">Veículo:</label>
+            <select id="vehicle" name="vehicle" type="text" class="w-full py-4 px-6 bg-slate-300 text-slate-800">
+                {% for vehicle in vehicles %}
+                    <option value="{{ vehicle.id }}" {% if vehicle.id == trip.vehicle_id %}selected{% endif %}>{{ vehicle.model }} - {{ vehicle.plate }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div>
+            <label for="origin" class="text-slate-800">Origem:</label>
+            <select id="origin" name="origin" type="text" class="w-full py-4 px-6 bg-slate-300 text-slate-800">
+                {% for branch in branches %}
+                    <option value="{{ branch.id }}" {% if branch.id == trip.origin_id %}selected{% endif %}>{{ branch.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="destiny" class="text-slate-800">Destino:</label>
+            <select id="destiny" name="destiny" type="text" class="w-full py-4 px-6 bg-slate-300 text-slate-800">
+                {% for branch in branches %}
+                    <option value="{{ branch.id }}" {% if branch.id == trip.destiny_id %}selected{% endif %}>{{ branch.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <button class="py-4 px-8 bg-slate-600 text-slate-300">Salvar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

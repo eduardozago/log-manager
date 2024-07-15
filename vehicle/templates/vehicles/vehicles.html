@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1 class="text-2xl text-slate-800">Veículos</h1>
+
+    <a href="{% url 'vehicle:add' %}" class="py-4 px-8 mt-6 bg-slate-600 text-slate-300 inline-block">Adicionar veículo</a>
+
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 gap-4">
+        {% for vehicle in vehicles %}
+            <div class="py-6 px-6 bg-slate-400">
+                <a href="{% url 'vehicle:vehicle' vehicle.id %}">
+                    <h2 class="mb-4 text-xl">{{ vehicle.model }}</h2>
+
+                    <p class="text-sm text-slate-800">
+                        <strong>Placa:</strong> {{ vehicle.plate }}
+                    </p>
+                    <p class="text-sm text-slate-800">
+                        <strong>Ano:</strong> {{ vehicle.year }}
+                    </p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1 class="text-2xl text-slate-800">{{ branch.name }}</h1>
+
+
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 gap-4">
+
+        <p class="text-sm text-slate-800">
+            <strong>Endereço:</strong> {{ branch.address }}
+        </p>
+        <div>
+            <a href="{% url 'branch:update' branch.id %}" class="py-2 mr-5 px-4 md:py-4 md:px-8 bg-green-800 text-slate-300">Editar</a> 
+            <a href="{% url 'branch:delete' branch.id %}" class="py-2 px-4 md:py-4 md:px-8 bg-red-800 text-slate-300">Deletar</a> 
+        </div>
+    </div>
+{% endblock %}

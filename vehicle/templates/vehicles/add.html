@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <div class="max-w-xl mx-auto py-8 bg-slate-400 text-center">
+        <h1 class="text-2xl text-slate-800">Adicionar Veículo</h1>
+
+        <form class="mt-6 px-8 space-y-4" method="post" action=".">
+            {% csrf_token %}
+            <div>
+                <label class="text-slate-800">Modelo:</label>
+                <input name="model" type="text" class="w-full py-4 px-6 bg-slate-300 text-slate-800">
+            </div>
+            
+            <div>
+                <label class="text-slate-800">Placa:</label>
+                <input name="plate" type="text" class="w-full py-4 px-6 bg-slate-300 text-slate-800">
+            </div>
+
+            <div>
+                <label class="text-slate-800">Ano:</label>
+                <input name="year" type="text" class="w-full py-4 px-6 bg-slate-300 text-slate-800">
+            </div>
+
+            <div>
+                <button class="py-4 px-8 bg-slate-600 text-slate-300">Adicionar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

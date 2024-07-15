@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1 class="text-2xl text-slate-800">{{ trip.origin.name }} para {{ trip.destiny.name }}</h1>
+
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-4 md:grid-rows-4 gap-4">
+
+        <p class="text-sm text-slate-800">
+            <strong>Veículo:</strong> {{ trip.vehicle.model }} - {{ trip.vehicle }}
+        </p>
+        <p class="text-sm text-slate-800">
+            <strong>Origem:</strong> {{ trip.origin }}
+        </p>
+        <p class="text-sm text-slate-800">
+            <strong>Destino:</strong> {{ trip.destiny }}
+        </p>
+        <p class="text-sm text-slate-800">
+            <strong>Status:</strong> 
+                {% if not trip.completed %}
+                    Em andamento
+                {% else %}
+                    Concluída
+                {% endif %}
+        </p>
+        {% if not trip.completed %}
+            <a href="{% url 'trip:completed' trip.id %}" class="py-2 mr-5 px-4 md:py-4 md:px-8 bg-emerald-500 text-slate-800">Marcar como concluída</a> 
+        {% endif %}
+        <a href="{% url 'trip:update' trip.id %}" class="py-2 mr-5 px-4 md:py-4 md:px-8 bg-green-800 text-slate-300">Editar</a> 
+        <a href="{% url 'trip:delete' trip.id %}" class="py-2 px-4 md:py-4 md:px-8 bg-red-800 text-slate-300">Deletar</a> 
+    </div>
+{% endblock %}
